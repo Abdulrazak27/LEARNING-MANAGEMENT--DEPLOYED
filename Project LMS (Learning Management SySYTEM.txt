@@ -1,0 +1,13 @@
+Project: LMS (Learning Management System)
+
+Frontend:
+- React (run: npm install → npm start)
+
+Backend:
+- Django (run: python manage.py runserver)
+
+Database:
+- MySQL (import lms.sql)
+
+API Base URL:
+http://127.0.0.1:8000

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+venv/
+lms_backend/venv/
+env/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.sqlite3
+
+# Static & Build Artifacts
+frontend/build/
+lms_backend/backend/staticfiles/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.zip

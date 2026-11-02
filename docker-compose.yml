@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-Razak@2005}
+      MYSQL_DATABASE: ${DB_NAME:-lms_db}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./production_lms_db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: always
+    environment:
+      - DB_NAME=${DB_NAME:-lms_db}
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD:-Razak@2005}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-prod-key}
+      - DEBUG=False
+      - ALLOWED_HOSTS=*
+      - EMAIL_HOST_PASSWORD=ijahldbbpmfhudlh
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
