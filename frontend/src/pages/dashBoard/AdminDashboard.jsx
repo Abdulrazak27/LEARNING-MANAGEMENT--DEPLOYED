@@ -145,7 +145,7 @@ function AdminDashboard() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    placeholder="admin or devtrio98@gmail.com"
+                    placeholder="Enter administrator username or email"
                     className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-300/60 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm transition"
                   />
                 </div>
@@ -164,7 +164,7 @@ function AdminDashboard() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    placeholder="admin@123"
+                    placeholder="Enter administrator password"
                     className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-300/60 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm transition font-mono"
                   />
                   <button

@@ -73,7 +73,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Enter your email or username (e.g. admin)"
+                placeholder="Enter your email or username"
                 icon={<Mail className="h-5 w-5 text-gray-500" />}
               />
 

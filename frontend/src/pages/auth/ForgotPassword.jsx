@@ -61,7 +61,7 @@ function ForgotPassword() {
         setAccountData(result);
         setStep(2);
         setSuccess(
-          `A 6-digit confirmation code was sent to ${result.masked_email || result.user_email} and devtrio98@gmail.com.`
+          `A 6-digit confirmation code was sent to ${result.masked_email || result.user_email}.`
         );
       } else {
         setError(result.error || "No account found matching this identifier. Please verify and try again.");
@@ -179,7 +179,7 @@ function ForgotPassword() {
       const result = await response.json();
       if (result.success) {
         setAccountData(result);
-        setSuccess(`A new confirmation code has been dispatched to devtrio98@gmail.com and ${result.user_email}.`);
+        setSuccess(`A new confirmation code has been dispatched to ${result.user_email}.`);
       } else {
         setError(result.error || "Failed to resend code.");
       }
@@ -216,14 +216,7 @@ function ForgotPassword() {
                   Find your account
                 </h1>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Enter your mobile number, username or email.{" "}
-                  <button
-                    type="button"
-                    onClick={() => setIdentifier("devtrio98@gmail.com")}
-                    className="text-blue-400 hover:text-blue-300 font-medium hover:underline inline cursor-pointer"
-                  >
-                    Can't reset your password?
-                  </button>
+                  Enter your mobile number, username or registered email.
                 </p>
               </div>
 
@@ -241,8 +234,7 @@ function ForgotPassword() {
                 </div>
 
                 <p className="text-xs text-gray-400 leading-relaxed px-0.5">
-                  You may receive email and security audit notifications to{" "}
-                  <span className="text-gray-300 font-medium">devtrio98@gmail.com</span> for security and login purposes.
+                  You will receive a 6-digit verification code to your registered email for account recovery.
                 </p>
 
                 {error && (
@@ -285,8 +277,7 @@ function ForgotPassword() {
                   Enter confirmation code
                 </h1>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Enter the 6-digit code sent to your email and{" "}
-                  <strong className="text-white">devtrio98@gmail.com</strong>.
+                  Enter the 6-digit code sent to your registered email address.
                 </p>
               </div>
 
@@ -439,10 +430,6 @@ function ForgotPassword() {
 
               {/* Email Audit Card */}
               <div className="p-4 bg-black/40 border border-gray-800 rounded-2xl text-left text-xs space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-gray-800">
-                  <span className="text-gray-400">Security Audit Target</span>
-                  <span className="font-semibold text-blue-400">devtrio98@gmail.com</span>
-                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400">Target User</span>
                   <span className="font-semibold text-white">{auditReceipt?.user_email || accountData?.user_email}</span>
@@ -486,7 +473,7 @@ function ForgotPassword() {
             LinkedIn
           </a>
         </div>
-        <p>© {new Date().getFullYear()} Nexora Academy • devtrio98@gmail.com Security System</p>
+        <p>© {new Date().getFullYear()} Nexora Academy • All Rights Reserved</p>
       </footer>
     </div>
   );
