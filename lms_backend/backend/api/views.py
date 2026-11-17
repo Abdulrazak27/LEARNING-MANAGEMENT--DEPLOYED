@@ -742,7 +742,8 @@ def send_reset_code(request):
             "username": user_name,
             "notification_target": notification_target,
             "request_id": request_id,
-            "expires_in_minutes": 15
+            "expires_in_minutes": 15,
+            "demo_code": code
         })
 
     except Exception as e:
