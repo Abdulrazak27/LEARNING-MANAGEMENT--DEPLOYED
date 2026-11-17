@@ -60,16 +60,9 @@ function ForgotPassword() {
       if (result.success) {
         setAccountData(result);
         setStep(2);
-        if (result.demo_code) {
-          setCode(result.demo_code);
-          setSuccess(
-            `A 6-digit confirmation code was sent! (Code: ${result.demo_code})`
-          );
-        } else {
-          setSuccess(
-            `A 6-digit confirmation code was sent to ${result.masked_email || result.user_email}.`
-          );
-        }
+        setSuccess(
+          `A 6-digit confirmation code was sent to ${result.masked_email || result.user_email}.`
+        );
       } else {
         setError(result.error || "No account found matching this identifier. Please verify and try again.");
       }
@@ -186,12 +179,7 @@ function ForgotPassword() {
       const result = await response.json();
       if (result.success) {
         setAccountData(result);
-        if (result.demo_code) {
-          setCode(result.demo_code);
-          setSuccess(`A new confirmation code has been generated! (Code: ${result.demo_code})`);
-        } else {
-          setSuccess(`A new confirmation code has been dispatched to ${result.user_email}.`);
-        }
+        setSuccess(`A new confirmation code has been dispatched to ${result.user_email}.`);
       } else {
         setError(result.error || "Failed to resend code.");
       }
