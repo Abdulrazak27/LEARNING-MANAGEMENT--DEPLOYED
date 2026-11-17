@@ -718,20 +718,21 @@ def send_reset_code(request):
             f"Nexora LMS Security Team"
         )
 
-        try:
-            from django.core.mail import send_mail
-            recipients = [user_email]
-            if notification_target.lower() != user_email.lower():
-                recipients.append(notification_target)
-            send_mail(
-                subject,
-                message_body,
-                getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@nexora.lms'),
-                recipients,
-                fail_silently=True
-            )
-        except Exception as mail_err:
-            print("Email dispatch notice:", mail_err)
+        def _send_email_async(subj, body, from_e, to_recipients):
+            try:
+                from django.core.mail import send_mail
+                send_mail(subj, body, from_e, to_recipients, fail_silently=True)
+            except Exception as mail_err:
+                print("Email dispatch notice:", mail_err)
+
+        import threading
+        from_email_addr = getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@nexora.lms')
+        email_thread = threading.Thread(
+            target=_send_email_async,
+            args=(subject, message_body, from_email_addr, [user_email]),
+            daemon=True
+        )
+        email_thread.start()
 
         return Response({
             "success": True,
@@ -856,17 +857,15 @@ def reset_password_confirm(request):
             f"Nexora LMS Security System"
         )
 
-        try:
-            from django.core.mail import send_mail
-            send_mail(
-                subject,
-                message_body,
-                'noreply@nexora.lms',
-                [notification_target, user_email],
-                fail_silently=True
-            )
-        except Exception:
-            pass
+        def _send_reset_notify(subj, body, to_recipients):
+            try:
+                from django.core.mail import send_mail
+                send_mail(subj, body, 'noreply@nexora.lms', to_recipients, fail_silently=True)
+            except Exception:
+                pass
+
+        import threading
+        threading.Thread(target=_send_reset_notify, args=(subject, message_body, [user_email]), daemon=True).start()
 
         return Response({
             "success": True,
@@ -922,17 +921,15 @@ def forgot_password(request):
             f"Best regards,\n"
             f"Nexora LMS Security System"
         )
-        try:
-            from django.core.mail import send_mail
-            send_mail(
-                subject,
-                message_body,
-                'noreply@nexora.lms',
-                [notification_target, user_email],
-                fail_silently=True
-            )
-        except Exception:
-            pass
+        def _send_reset_notify(subj, body, to_recipients):
+            try:
+                from django.core.mail import send_mail
+                send_mail(subj, body, 'noreply@nexora.lms', to_recipients, fail_silently=True)
+            except Exception:
+                pass
+
+        import threading
+        threading.Thread(target=_send_reset_notify, args=(subject, message_body, [user_email]), daemon=True).start()
 
         request_id = f"REQ-{uuid.uuid4().hex[:8].upper()}"
         with connection.cursor() as cursor:
