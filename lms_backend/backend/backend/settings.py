@@ -78,7 +78,11 @@ if DATABASE_URL:
     url = urllib.parse.urlparse(DATABASE_URL)
     db_options = {'charset': 'utf8mb4'}
     if 'tidb' in (url.hostname or '') or os.environ.get('DB_SSL', '').lower() in ('true', '1', 'required'):
-        db_options['ssl'] = {'ssl_mode': 'REQUIRED'}
+        import ssl
+        try:
+            db_options['ssl'] = ssl.create_default_context()
+        except Exception:
+            db_options['ssl'] = {'ssl_mode': 'REQUIRED'}
 
     DATABASES = {
         'default': {
