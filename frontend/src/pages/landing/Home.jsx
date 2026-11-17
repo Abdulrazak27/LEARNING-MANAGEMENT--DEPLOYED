@@ -202,6 +202,10 @@ function Home() {
                   <img
                     src={course.p_link || c1}
                     alt={course.course_name}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600";
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Top-Left Status Badge */}

@@ -80,6 +80,10 @@ function Learnings() {
               <img
                 src={course.p_link}
                 alt={course.course_name}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600";
+                }}
                 className="rounded-lg shadow-md w-[180px] h-[120px] mr-4 object-cover max-md:w-[130px] max-md:h-[90px]"
               />
               <div className="flex-1 text-left">
