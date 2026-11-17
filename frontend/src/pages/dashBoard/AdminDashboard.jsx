@@ -41,7 +41,7 @@ function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(false);
 
   const adminName = localStorage.getItem("name") || "Administrator";
-  const adminEmail = localStorage.getItem("email") || "admin@gmail.com";
+  const adminEmail = localStorage.getItem("email") || "admin@nexora.lms";
 
   const renderContent = () => {
     switch (current) {
