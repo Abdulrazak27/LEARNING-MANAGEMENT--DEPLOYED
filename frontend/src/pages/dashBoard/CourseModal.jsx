@@ -20,6 +20,7 @@ function CourseModal({ isOpen, onClose, onSuccess, courseId = null, mode = "add"
     } else if (isOpen && !isEditMode) {
       form.resetFields();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, courseId, isEditMode]);
 
   const fetchCourseData = async () => {

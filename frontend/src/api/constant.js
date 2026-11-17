@@ -3,9 +3,11 @@ const getApiBaseUrl = () => {
     return process.env.REACT_APP_API_URL;
   }
   if (typeof window !== "undefined" && window.location && window.location.hostname) {
-    return `http://${window.location.hostname}:8000`;
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      return `http://${window.location.hostname}:8000`;
+    }
   }
-  return "http://localhost:8000";
+  return "https://learning-management-deployed.onrender.com";
 };
 
 export const API_BASE_URL = getApiBaseUrl();

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { Progress, Modal } from "antd";
-import { Play, Lock, MessageSquare, ArrowLeft, BookOpen, Users, Clock, Award } from "lucide-react";
+import { Play, MessageSquare, BookOpen, Users, Clock, Award } from "lucide-react";
 import { faBackward } from "@fortawesome/free-solid-svg-icons";
 import Feedback from "./Feedback";
 import Forum from "./forum";

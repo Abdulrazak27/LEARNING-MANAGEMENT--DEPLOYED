@@ -275,9 +275,9 @@ function RegistrationForm() {
           <div className="text-center">
             <p className="text-sm text-gray-500">
               By creating an account, you agree to our{" "}
-              <a href="#" className="text-blue-600 hover:text-blue-700 transition-colors">Terms of Service</a>
+              <span className="text-blue-600 hover:text-blue-700 transition-colors cursor-pointer">Terms of Service</span>
               {" "}and{" "}
-              <a href="#" className="text-blue-600 hover:text-blue-700 transition-colors">Privacy Policy</a>
+              <span className="text-blue-600 hover:text-blue-700 transition-colors cursor-pointer">Privacy Policy</span>
             </p>
           </div>
         </div>

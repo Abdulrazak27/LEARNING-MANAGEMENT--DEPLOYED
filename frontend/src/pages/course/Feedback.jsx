@@ -17,6 +17,7 @@ const Feedback = ({ courseid }) => {
 
   useEffect(() => {
     fetchFeedbacks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseid]);
 
   const sendFeedback = async () => {

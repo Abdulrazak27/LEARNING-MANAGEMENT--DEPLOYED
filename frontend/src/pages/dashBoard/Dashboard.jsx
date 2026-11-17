@@ -17,13 +17,11 @@ function Dashboard({ isAuthenticated }) {
   const [enrolled, setEnrolled] = useState(0);
   const [courses, setCourses] = useState([]);
   const [recentEnrollments, setRecentEnrollments] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!isAuthenticated) return;
 
     async function fetchData() {
-      setLoading(true);
       try {
         const usersRes = await adminService.getAllUsers();
         if (usersRes.success && Array.isArray(usersRes.data)) {
@@ -43,8 +41,6 @@ function Dashboard({ isAuthenticated }) {
         }
       } catch (err) {
         console.error("Dashboard error:", err);
-      } finally {
-        setLoading(false);
       }
     }
 

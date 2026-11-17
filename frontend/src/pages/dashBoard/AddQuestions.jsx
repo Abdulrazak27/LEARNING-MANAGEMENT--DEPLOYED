@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Card, 
   Form, 
@@ -10,7 +9,6 @@ import {
   message, 
   Row, 
   Col,
-  Divider,
   Table,
   Modal,
   Popconfirm
@@ -32,8 +30,6 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 function AddQuestion({ courseId, onBack }) {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -45,6 +41,7 @@ function AddQuestion({ courseId, onBack }) {
   
   useEffect(() => {
     fetchQuestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
   const fetchQuestions = async () => {
@@ -169,10 +166,6 @@ function AddQuestion({ courseId, onBack }) {
     } catch (error) {
       message.error('An unexpected error occurred');
     }
-  };
-
-  const handleCancel = () => {
-    navigate(-1);
   };
 
   const columns = [
